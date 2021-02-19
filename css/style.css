@@ -1,0 +1,32 @@
+/* Fonts */
+body {
+	font-family: Space Mono;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 62px;
+	line-height: 92px;
+	letter-spacing: -0.03em;
+	color: #000000;
+}
+h1 {
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 5px;
+}
+main {
+	margin: 0 auto;
+	height: 100vh;
+	text-align: center;
+}
+figure {
+	margin: 50px auto 0;
+}
+
+/* Game Holder */
+.holder {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.purple {
+}
