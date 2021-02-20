@@ -33,42 +33,41 @@ figure {
 	z-index: -1;
 }
 
-.purple {
+#purple {
 	left: 41vw;
 	position: absolute;
 	top: 17vw;
 	width: 16vw;
 }
 
-.green {
+#green {
 	position: absolute;
 	left: 31vw;
 	top: 4vw;
 	width: 10vw;
 }
 
-.yellow {
+#yellow {
 	position: absolute;
 	left: 59vw;
 	top: 2vw;
 	width: 10vw;
 }
 
-.blue {
+#blue {
 	position: absolute;
 	left: 56vw;
 	top: 38vw;
 	width: 9vw;
 }
 
-.red {
+#red {
 	position: absolute;
 	left: 28vw;
 	top: 38vw;
 	width: 10vw;
 }
 
-.piece {
-	/* position: absolute; */
-	filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+.highlight {
+	filter: drop-shadow(0px 20px 24px magenta);
 }
