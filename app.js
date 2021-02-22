@@ -10,19 +10,17 @@ wrapper.addEventListener('click', (event) => {
 
 	let colorId = document.getElementById(event.target.id);
 	if (colorId !== null) {
-		console.log(colorId.getAttribute('id'));
+		colorId = colorId.getAttribute('id');
+		document.getElementById(`${colorId}`).classList.add('highlight');
+		setTimeout(function () {
+			document.getElementById(`${colorId}`).classList.remove('highlight');
+		}, 1000);
 	}
-	// .getAttribute('id');
-	// document.getElementById(`${colorId}`).classList.add('highlight');
-	// console.log(colorId);
 });
 
 // if (event.target.className !== 'holder') {
 // 	let colorId = document.getElementById(event.target.id).getAttribute('id');
 // 	document.getElementById(`${colorId}`).classList.add('highlight');
-// 	setTimeout(function () {
-// 		document.getElementById(`${colorId}`).classList.remove('highlight');
-// 	}, 1000);
 // }
 // });
 

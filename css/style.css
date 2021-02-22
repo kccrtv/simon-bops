@@ -8,14 +8,20 @@ body {
 	letter-spacing: -0.03em;
 	line-height: 92px;
 }
+
 h1 {
 	margin: 0 auto;
 	padding-top: 5px;
-	text-align: left;
+	text-align: center;
 }
+
 main {
 	margin: 0 auto;
 	text-align: center;
+}
+
+figure {
+	margin: auto;
 }
 
 /* Game Holder */
@@ -27,45 +33,39 @@ main {
 .holder {
 	margin: 0 auto;
 	text-align: center;
-	width: 65vw;
-	z-index: -1;
-	grid-column: 1 / span 22;
+	width: 45vw;
 	grid-row: 4 / span 6;
+	grid-column: 1 / span 33;
 }
 
 #purple {
-	width: 23vw;
-	z-index: 2;
+	width: 16vw;
 	grid-row: 6 / span 1;
-	grid-column: 8 / span 10;
+	grid-column: 15 / span 8;
 }
 
 #green {
-	width: 11vw;
-	z-index: 1;
+	width: 9vw;
 	grid-row: 2 / span 3;
-	grid-column: 5 / span 5;
+	grid-column: 13 / span 5;
 }
 
 #yellow {
-	width: 10vw;
-	z-index: 1;
+	width: 8vw;
 	grid-row: 2 / span 3;
-	grid-column: 15 / span 6;
+	grid-column: 20 / span 6;
 }
 
 #blue {
-	width: 9vw;
-	z-index: 1;
-	grid-row: 9 / span 2;
-	grid-column: 14 / span 3;
+	width: 8vw;
+	grid-row: 9 / span 4;
+	grid-column: 19 / span 9;
 }
 
 #red {
-	width: 10vw;
-	z-index: 1;
+	width: 9vw;
 	grid-row: 9 / span 2;
-	grid-column: 4 / span 4;
+	grid-column: 12 / span 4;
 }
 
 .highlight {
