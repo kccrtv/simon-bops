@@ -13,28 +13,32 @@ wrapper.addEventListener('click', (event) => {
 	}
 });
 
-// const levelUp (()=> {
-//     const level = document.querySelector('.header');
-//     let currentLevel = 0;
-//     level.textContent = `Level ${currentLevel}`;
-// })
-
 /********************** PSEUDOCODE STEPS**********************/
 //create a random sequence
 const randomNumber = () => {
 	return Math.floor(Math.random() * 5);
 };
 
-let colors = ['green', 'yellow', 'red', 'blue', 'purple'];
+const pieceColors = ['green', 'yellow', 'red', 'blue', 'purple'];
+let gameSequence = [];
 
-let moves = [];
-moves.push(randomNumber());
-console.log(moves);
-console.log(colors[moves]);
+const simonMoves = () => {
+	let currentRandomNumber = randomNumber();
+	let simonsColors = pieceColors[currentRandomNumber];
+	return gameSequence.push(simonsColors);
+};
 
 //display current level
+const levelUp = () => {
+	const level = document.querySelector('.header');
+	let currentLevel = 0;
+	currentLevel++;
+	return (level.textContent = `Level ${currentLevel}`);
+};
 
 //display Simon's colors at the start of each level
+simonMoves();
+console.log(simonMoves());
 
 //use corresponding numbers to flash components
 
