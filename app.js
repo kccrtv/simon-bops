@@ -21,6 +21,16 @@ wrapper.addEventListener('click', (event) => {
 
 /********************** PSEUDOCODE STEPS**********************/
 //create a random sequence
+const randomNumber = () => {
+	return Math.floor(Math.random() * 5);
+};
+
+let colors = ['green', 'yellow', 'red', 'blue', 'purple'];
+
+let moves = [];
+moves.push(randomNumber());
+console.log(moves);
+console.log(colors[moves]);
 
 //display current level
 
