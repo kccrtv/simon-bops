@@ -1,8 +1,9 @@
 const wrapper = document.querySelector('.wrapper');
+const pieceColors = ['green', 'yellow', 'red', 'blue', 'purple'];
+let userMoves = [];
 
 wrapper.addEventListener('click', (event) => {
 	event.preventDefault();
-
 	let colorId = document.getElementById(event.target.id);
 	if (colorId !== null) {
 		colorId = colorId.getAttribute('id');
@@ -10,6 +11,8 @@ wrapper.addEventListener('click', (event) => {
 		setTimeout(function () {
 			document.getElementById(`${colorId}`).classList.remove('highlight');
 		}, 1000);
+		userMoves.push(`${colorId}`);
+		console.log(`Player's moves: ${userMoves}`);
 	}
 });
 
@@ -19,7 +22,6 @@ const randomNumber = () => {
 	return Math.floor(Math.random() * 5);
 };
 
-const pieceColors = ['green', 'yellow', 'red', 'blue', 'purple'];
 let gameSequence = [];
 
 const simonMoves = () => {
@@ -47,6 +49,7 @@ const game = () => {
 	setTimeout(function () {
 		pieceHighlight.classList.remove('highlight');
 	}, 1000);
+	console.log(`Simon's moves: ${gameSequence}`);
 	return gameSequence;
 };
 
