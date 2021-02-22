@@ -25,6 +25,7 @@ let gameSequence = [];
 const simonMoves = () => {
 	let currentRandomNumber = randomNumber();
 	let simonsColors = pieceColors[currentRandomNumber];
+
 	return gameSequence.push(simonsColors);
 };
 
@@ -37,8 +38,18 @@ const levelUp = () => {
 };
 
 //display Simon's colors at the start of each level
-simonMoves();
-console.log(simonMoves());
+const game = () => {
+	simonMoves();
+	levelUp();
+	let piece = document.getElementById(`${gameSequence}`);
+	piece.classList.add('highlight');
+	setTimeout(function () {
+		piece.classList.remove('highlight');
+	}, 1000);
+	return gameSequence;
+};
+
+game();
 
 //use corresponding numbers to flash components
 
