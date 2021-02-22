@@ -1,9 +1,4 @@
 const wrapper = document.querySelector('.wrapper');
-// const purple = document.getElementById('purple');
-// const green = document.getElementById('green');
-// const yellow = document.getElementById('yellow');
-// const blue = document.getElementById('blue');
-// const red = document.getElementById('red');
 
 wrapper.addEventListener('click', (event) => {
 	event.preventDefault();
@@ -18,14 +13,29 @@ wrapper.addEventListener('click', (event) => {
 	}
 });
 
-// if (event.target.className !== 'holder') {
-// 	let colorId = document.getElementById(event.target.id).getAttribute('id');
-// 	document.getElementById(`${colorId}`).classList.add('highlight');
-// }
-// });
-
 // const levelUp (()=> {
 //     const level = document.querySelector('.header');
 //     let currentLevel = 0;
 //     level.textContent = `Level ${currentLevel}`;
 // })
+
+/********************** PSEUDOCODE STEPS**********************/
+//create a random sequence
+
+//display current level
+
+//display Simon's colors at the start of each level
+
+//use corresponding numbers to flash components
+
+//store the input of the game's sequence
+
+//store the input of the player
+
+//wait for user's input and cross-check if the input matches the game's input
+
+//if matches, proceed to next level
+
+//else, game over, and game resets
+
+//inform user if game is over
