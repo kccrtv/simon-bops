@@ -25,7 +25,6 @@ let gameSequence = [];
 const simonMoves = () => {
 	let currentRandomNumber = randomNumber();
 	let simonsColors = pieceColors[currentRandomNumber];
-
 	return gameSequence.push(simonsColors);
 };
 
@@ -37,23 +36,21 @@ const levelUp = () => {
 	return (level.textContent = `Level ${currentLevel}`);
 };
 
-//display Simon's colors at the start of each level
+//display Simon's colors at the start of each level and flash corresponding color piece
+let piece = gameSequence[0];
 const game = () => {
 	simonMoves();
 	levelUp();
-	let piece = document.getElementById(`${gameSequence}`);
-	piece.classList.add('highlight');
+	piece = gameSequence[gameSequence.length - 1];
+	let pieceHighlight = document.getElementById(`${piece}`);
+	pieceHighlight.classList.add('highlight');
 	setTimeout(function () {
-		piece.classList.remove('highlight');
+		pieceHighlight.classList.remove('highlight');
 	}, 1000);
 	return gameSequence;
 };
 
 game();
-
-//use corresponding numbers to flash components
-
-//store the input of the game's sequence
 
 //store the input of the player
 
