@@ -16,11 +16,26 @@ window.document.addEventListener('keypress', () => {
 	}
 });
 
-//create random number and store into variable. push variable into gamesequence.
-function randomNumber() {
-	let num = Math.floor(Math.random() * 5);
-	gameSequence.push(num);
-	return gameSequence;
+wrapper.addEventListener('click', (event) => {
+	event.preventDefault();
+	let user = document.getElementById(event.target.id).getAttribute('id');
+	userMoves.push(user);
+	console.log(`User pattern: ${userMoves}`);
+	validate(userMoves.length - 1);
+	highlight(user);
+});
+
+function validate(currentLevel) {
+	if (gameSequence[currentLevel] === userMoves[currentLevel]) {
+		if (userMoves.length === gameSequence.length) {
+			setTimeout(function () {
+				simonMoves();
+			}, 1000);
+		}
+	} else {
+		level.textContent = `Game Over!`;
+		reset();
+	}
 }
 
 //simon's turn
@@ -28,9 +43,35 @@ function simonMoves() {
 	userMoves = [];
 	currentLevel++;
 	level.textContent = `Level ${currentLevel}`;
-	let currentRandomNumber = randomNumber();
+	let currentRandomNumber = Math.floor(Math.random() * 5);
+	let piece = gameSequence[0];
 	let simon = pieceColors[currentRandomNumber];
-	return simon;
+	let simonPiece = document.querySelector(`#${simon}`);
+	piece = gameSequence[gameSequence.length - 1];
+
+	gameSequence.push(simon);
+	console.log(`game sequence: ${gameSequence}`);
+	// highlight(simon);
+
+	setTimeout(() => {
+		simonPiece.classList.add('highlight');
+		simonPiece.classList.remove('pressed');
+	}, 400);
+
+	//fade in/out/in animation + play sound
+}
+
+function highlight(currentPiece) {
+	document.getElementById(`${currentPiece}`).classList.add('highlight');
+	setTimeout(() => {
+		document.getElementById(`${currentPiece}`).classList.remove('highlight');
+	}, 200);
+}
+
+function reset() {
+	currentLevel = 0;
+	gameSequence = [];
+	game = false;
 }
 
 /********************** FIRST DRAFT **********************/
