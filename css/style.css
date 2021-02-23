@@ -11,7 +11,7 @@ body {
 	background: linear-gradient(
 		90deg,
 		rgba(238, 174, 202, 1) 0%,
-		rgba(148, 187, 233, 1) 100%
+		rgba(148, 187, 233, 1) 80%
 	);
 }
 
@@ -23,7 +23,6 @@ h1 {
 }
 
 span {
-	font-size: 4.5rem;
 	color: gray;
 }
 
@@ -36,10 +35,15 @@ figure {
 	margin: auto;
 }
 
-/* Game Holder */
+.restart {
+	font-size: 3rem;
+	display: none;
+}
+
 .wrapper {
 	display: grid;
 	margin: 0 auto;
+	filter: brightness(0.9);
 }
 
 .holder {
@@ -81,5 +85,5 @@ figure {
 }
 
 .highlight {
-	filter: drop-shadow(0px 20px 24px blue) brightness(1.5);
+	filter: drop-shadow(0px 20px 24px purple) brightness(3);
 }
