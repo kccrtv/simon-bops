@@ -10,6 +10,7 @@ window.document.addEventListener('keypress', () => {
 		simonMoves();
 	}
 });
+
 const simonMoves = () => {
 	return game();
 };
@@ -32,7 +33,8 @@ wrapper.addEventListener('click', (event) => {
 /********************** PSEUDOCODE STEPS**********************/
 //create a random sequence
 const randomNumber = () => {
-	return Math.floor(Math.random() * 5);
+	let num = Math.floor(Math.random() * 5);
+	gameSequence.push(num);
 };
 
 let gameSequence = [];

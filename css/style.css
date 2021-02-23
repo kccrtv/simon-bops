@@ -7,6 +7,12 @@ body {
 	font-size: 62px;
 	letter-spacing: -0.03em;
 	line-height: 92px;
+	background: rgb(238, 174, 202);
+	background: linear-gradient(
+		90deg,
+		rgba(238, 174, 202, 1) 0%,
+		rgba(148, 187, 233, 1) 100%
+	);
 }
 
 h1 {
@@ -69,5 +75,5 @@ figure {
 }
 
 .highlight {
-	filter: drop-shadow(0px 20px 24px magenta);
+	filter: drop-shadow(0px 20px 24px blue) brightness(1.5);
 }
