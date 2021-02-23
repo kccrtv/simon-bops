@@ -2,7 +2,10 @@ let gameSequence = [];
 let userMoves = [];
 let game = false;
 let currentLevel = 0;
+let points = 0;
 const level = document.querySelector('.header');
+const score = document.querySelector('.score');
+const restart = document.querySelector('.restart');
 const wrapper = document.querySelector('.wrapper');
 const pieceColors = ['green', 'yellow', 'red', 'blue', 'purple'];
 
@@ -10,7 +13,7 @@ window.document.addEventListener('keypress', () => {
 	if (!game) {
 		simonMoves();
 		level.textContent = `Level ${currentLevel}`;
-		document.querySelector('.restart').style.display = 'none';
+		restart.style.display = 'none';
 		game = true;
 	}
 });
@@ -21,18 +24,23 @@ wrapper.addEventListener('click', (event) => {
 	userMoves.push(user);
 	validate(userMoves.length - 1);
 	highlight(user);
+	score.style.display = 'inline';
 });
 
 function validate(currentLevel) {
 	if (gameSequence[currentLevel] === userMoves[currentLevel]) {
 		if (userMoves.length === gameSequence.length) {
+			points += 10;
+			score.innerText = `00${points}`;
 			setTimeout(function () {
 				simonMoves();
 			}, 1000);
 		}
+		score.style.display = 'none'; /// score doesn't disappear after game over
 	} else {
 		level.textContent = `Game Over!`;
-		document.querySelector('.restart').style.display = 'inline-block';
+		score.style.display = 'none';
+		restart.style.display = 'inline-block';
 		reset();
 	}
 }
@@ -46,7 +54,6 @@ function simonMoves() {
 	let simon = pieceColors[currentRandomNumber];
 	let simonPiece = document.querySelector(`#${simon}`);
 	piece = gameSequence[gameSequence.length - 1];
-
 	gameSequence.push(simon);
 	console.log(`game sequence: ${gameSequence}`);
 	document.querySelector('.wrapper').filter = 'brightness(2)';
@@ -66,7 +73,10 @@ function highlight(currentPiece) {
 }
 
 function reset() {
-	currentLevel = 0;
 	gameSequence = [];
+	userMoves = [];
 	game = false;
+	currentLevel = 0;
+	points = 0;
+	score.style.display = 'none';
 }
