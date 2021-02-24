@@ -4,6 +4,7 @@ let game = false;
 let playerTurn = false;
 let currentLevel = 0;
 let points = 0;
+const main = document.querySelector('main');
 const level = document.querySelector('.header');
 const score = document.querySelector('.score');
 const restart = document.querySelector('.restart');
@@ -34,15 +35,20 @@ function validate(currentLevel) {
 	if (gameSequence[currentLevel] === userMoves[currentLevel]) {
 		if (userMoves.length === gameSequence.length) {
 			points += 10;
-			score.innerText = `00${points}`;
+			if (points < 100) {
+				score.innerText = `00${points}`;
+			} else if (points >= 100) {
+				score.innerText = `0${points}`;
+			}
 			setTimeout(function () {
 				simonMoves();
 			}, 1000);
 		}
 	} else {
 		level.textContent = `Game Over!`;
-		score.style.display = 'none';
 		restart.style.display = 'block';
+		main.removeChild(score);
+		playSound(`wrong`);
 		reset();
 	}
 }
@@ -50,7 +56,6 @@ function validate(currentLevel) {
 function showPattern(array) {
 	let interval = 600;
 	let promise = Promise.resolve();
-
 	array.forEach((array) => {
 		promise = promise.then(() => {
 			console.log(array);
@@ -62,7 +67,7 @@ function showPattern(array) {
 		});
 	});
 	promise.then(() => {
-		return 'Loop done.';
+		return `Loop done.`;
 	});
 }
 
@@ -77,16 +82,7 @@ function simonMoves() {
 	let simonPiece = document.querySelector(`#${simon}`);
 	piece = gameSequence[gameSequence.length - 1];
 	gameSequence.push(simon);
-
 	showPattern(gameSequence);
-	// playSound(simon);
-	// document.querySelector('.wrapper').filter = 'brightness(2)';
-	// simonPiece.classList.add('highlight');
-	// setTimeout(() => {
-	// 	simonPiece.classList.remove('highlight');
-	// }, 300);
-
-	//fade in/out/in animation + play sound
 }
 
 function highlight(currentPiece) {
@@ -106,6 +102,7 @@ function reset() {
 	gameSequence = [];
 	userMoves = [];
 	game = false;
+	playerTurn = false;
 	currentLevel = 0;
 	points = 0;
 	score.style.display = 'none';
