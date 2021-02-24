@@ -107,3 +107,11 @@ function reset() {
 	points = 0;
 	score.style.display = 'none';
 }
+
+/**
+ * green - jello
+ * yellow - flip
+ * red - swing
+ * purple - bouncein
+ * blue - bounce
+ */
