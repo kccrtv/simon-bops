@@ -47,24 +47,24 @@ function validate(currentLevel) {
 	}
 }
 
-let interval = 400;
-let promise = Promise.resolve();
-let array = ['random', 'test', 'array'];
-array.forEach((array, index) => {
-	promise = promise.then(() => {
-		console.log(array);
-		return new Promise((resolve) => {
-			setTimeout(resolve, interval);
+function showPattern(array) {
+	let interval = 600;
+	let promise = Promise.resolve();
+
+	array.forEach((array) => {
+		promise = promise.then(() => {
+			console.log(array);
+			highlight(array);
+			playSound(array);
+			return new Promise((resolve) => {
+				setTimeout(resolve, interval);
+			});
 		});
 	});
-});
-promise.then(() => {
-	console.log('Loop done.');
-});
-// return;
-// function showPattern(array, index) {
-
-// }
+	promise.then(() => {
+		return 'Loop done.';
+	});
+}
 
 function simonMoves() {
 	playerTurn = false;
@@ -78,13 +78,13 @@ function simonMoves() {
 	piece = gameSequence[gameSequence.length - 1];
 	gameSequence.push(simon);
 
-	gameSequence.forEach(showPattern);
+	showPattern(gameSequence);
 	// playSound(simon);
-	document.querySelector('.wrapper').filter = 'brightness(2)';
-	simonPiece.classList.add('highlight');
-	setTimeout(() => {
-		simonPiece.classList.remove('highlight');
-	}, 300);
+	// document.querySelector('.wrapper').filter = 'brightness(2)';
+	// simonPiece.classList.add('highlight');
+	// setTimeout(() => {
+	// 	simonPiece.classList.remove('highlight');
+	// }, 300);
 
 	//fade in/out/in animation + play sound
 }
