@@ -109,9 +109,84 @@ function reset() {
 }
 
 /**
- * green - jello
- * yellow - animate__flipInY
+ * green - animate__shakeY
+ * yellow - bounce
  * red - swing
  * purple - bounceIn
- * blue - bounce
+ * blue - animate__shakeY
+ */
+
+const animateCSS = (element, animation, prefix = 'animate__') =>
+	// We create a Promise and return it
+	new Promise((resolve, reject) => {
+		const animationName = `${prefix}${animation}`;
+		const node = document.querySelector('.piece');
+
+		node.classList.add(`${prefix}animated`, animationName);
+
+		// When the animation ends, we clean the classes and resolve the Promise
+		function handleAnimationEnd(event) {
+			event.stopPropagation();
+			node.classList.remove(`${prefix}animated`, animationName);
+			resolve('Animation ended');
+		}
+
+		node.addEventListener('animationend', handleAnimationEnd, { once: true });
+	});
+
+function animation(key) {
+	let img = document.querySelectorAll('img')[key].dataset.id;
+
+	switch (key) {
+		case 0:
+			const green = document.querySelector('#green');
+			green.classList.add('animate__animated', 'animate__shakeY');
+			green.addEventListener('animationend', () => {
+				green.classList.remove('animate__animated', 'animate__shakeY');
+			});
+			break;
+		case 1:
+			const yellow = document.querySelector('#yellow');
+			yellow.classList.add('animate__animated', 'animate__bounce');
+			yellow.addEventListener('animationend', () => {
+				yellow.classList.remove('animate__animated', 'animate__bounce');
+			});
+			break;
+		case 3:
+			const red = document.querySelector('#red');
+			red.classList.add('animate__animated', 'animate__swing');
+			red.addEventListener('animationend', () => {
+				red.classList.remove('animate__animated', 'animate__swing');
+			});
+			break;
+		case 4:
+			const purple = document.querySelector('#purple');
+			purple.classList.add('animate__animated', 'animate__bounceIn');
+			purple.addEventListener('animationend', () => {
+				purple.classList.remove('animate__animated', 'animate__bounceIn');
+			});
+			break;
+		case 5:
+			const blue = document.querySelector('#blue');
+			blue.classList.add('animate__animated', 'animate__shakeY');
+			blue.addEventListener('animationend', () => {
+				blue.classList.remove('animate__animated', 'animate__shakeY');
+			});
+			break;
+		default:
+			console.log(img);
+			break;
+	}
+}
+animation(0);
+
+// animateCSS()
+/**
+ * nodelist:
+ * 0 green data-id 0
+ * 1 yellow data-id 1
+ * 2 holder data-id n/a
+ * 3 red data-id 3
+ * 4 purple data-id 4
+ * 5 blue data-id 5
  */
