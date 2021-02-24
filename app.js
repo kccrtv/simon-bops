@@ -40,7 +40,7 @@ function validate(currentLevel) {
 	} else {
 		level.textContent = `Game Over!`;
 		score.style.display = 'none';
-		restart.style.display = 'inline-block';
+		restart.style.display = 'block';
 		reset();
 	}
 }
@@ -55,12 +55,23 @@ function simonMoves() {
 	let simonPiece = document.querySelector(`#${simon}`);
 	piece = gameSequence[gameSequence.length - 1];
 	gameSequence.push(simon);
-	console.log(`game sequence: ${gameSequence}`);
-	document.querySelector('.wrapper').filter = 'brightness(2)';
-	simonPiece.classList.add('highlight');
-	setTimeout(() => {
-		simonPiece.classList.remove('highlight');
-	}, 300);
+
+	// replay here?
+
+	gameSequence.forEach(function (simon) {
+		console.log(simon);
+		document.querySelector('.wrapper').filter = 'brightness(2)';
+		simonPiece.classList.add('highlight');
+		setTimeout(() => {
+			simonPiece.classList.remove('highlight');
+		}, 300);
+	});
+
+	// document.querySelector('.wrapper').filter = 'brightness(2)';
+	// simonPiece.classList.add('highlight');
+	// setTimeout(() => {
+	// 	simonPiece.classList.remove('highlight');
+	// }, 300);
 
 	//fade in/out/in animation + play sound
 }
