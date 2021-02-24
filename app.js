@@ -1,6 +1,7 @@
 let gameSequence = [];
 let userMoves = [];
 let game = false;
+let playerTurn = false;
 let currentLevel = 0;
 let points = 0;
 const level = document.querySelector('.header');
@@ -20,6 +21,7 @@ window.document.addEventListener('keypress', () => {
 
 wrapper.addEventListener('click', (event) => {
 	event.preventDefault();
+	playerTurn = true;
 	let user = document.getElementById(event.target.id).getAttribute('id');
 	userMoves.push(user);
 	validate(userMoves.length - 1);
@@ -45,7 +47,27 @@ function validate(currentLevel) {
 	}
 }
 
+let interval = 400;
+let promise = Promise.resolve();
+let array = ['random', 'test', 'array'];
+array.forEach((array, index) => {
+	promise = promise.then(() => {
+		console.log(array);
+		return new Promise((resolve) => {
+			setTimeout(resolve, interval);
+		});
+	});
+});
+promise.then(() => {
+	console.log('Loop done.');
+});
+// return;
+// function showPattern(array, index) {
+
+// }
+
 function simonMoves() {
+	playerTurn = false;
 	userMoves = [];
 	currentLevel++;
 	level.textContent = `Level ${currentLevel}`;
@@ -56,8 +78,8 @@ function simonMoves() {
 	piece = gameSequence[gameSequence.length - 1];
 	gameSequence.push(simon);
 
-	console.log(gameSequence);
-	playSound(simon);
+	gameSequence.forEach(showPattern);
+	// playSound(simon);
 	document.querySelector('.wrapper').filter = 'brightness(2)';
 	simonPiece.classList.add('highlight');
 	setTimeout(() => {
