@@ -36,7 +36,6 @@ function validate(currentLevel) {
 				simonMoves();
 			}, 1000);
 		}
-		score.style.display = 'none'; /// score doesn't disappear after game over
 	} else {
 		level.textContent = `Game Over!`;
 		score.style.display = 'none';
@@ -56,22 +55,11 @@ function simonMoves() {
 	piece = gameSequence[gameSequence.length - 1];
 	gameSequence.push(simon);
 
-	// replay here?
-
-	gameSequence.forEach(function (simon) {
-		console.log(simon);
-		document.querySelector('.wrapper').filter = 'brightness(2)';
-		simonPiece.classList.add('highlight');
-		setTimeout(() => {
-			simonPiece.classList.remove('highlight');
-		}, 300);
-	});
-
-	// document.querySelector('.wrapper').filter = 'brightness(2)';
-	// simonPiece.classList.add('highlight');
-	// setTimeout(() => {
-	// 	simonPiece.classList.remove('highlight');
-	// }, 300);
+	document.querySelector('.wrapper').filter = 'brightness(2)';
+	simonPiece.classList.add('highlight');
+	setTimeout(() => {
+		simonPiece.classList.remove('highlight');
+	}, 300);
 
 	//fade in/out/in animation + play sound
 }
