@@ -110,8 +110,8 @@ function reset() {
 
 /**
  * green - jello
- * yellow - flip
+ * yellow - animate__flipInY
  * red - swing
- * purple - bouncein
+ * purple - bounceIn
  * blue - bounce
  */
