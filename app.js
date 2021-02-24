@@ -76,6 +76,7 @@ function highlight(currentPiece) {
 
 function playSound(name) {
 	let audio = new Audio(`sound/${name}.wav`);
+	audio.volume = 0.1;
 	audio.play();
 }
 
