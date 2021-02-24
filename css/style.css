@@ -10,7 +10,7 @@ body {
 	font-weight: bold;
 	font-size: 3rem;
 	letter-spacing: -0.03em;
-	line-height: 92px;
+	/* line-height: 92px; */
 	background: rgb(238, 174, 202);
 	background: linear-gradient(
 		90deg,
@@ -21,10 +21,14 @@ body {
 	text-align: center;
 }
 
+figure {
+	margin-bottom: 0;
+}
+
 h1 {
 	margin: 0 auto;
 	text-align: center;
-	font-size: 5rem;
+	font-size: 4rem;
 }
 
 span {

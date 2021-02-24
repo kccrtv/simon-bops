@@ -1,5 +1,5 @@
 let gameSequence = [];
-let userMoves = [];
+let userSequence = [];
 let game = false;
 let playerTurn = false;
 let currentLevel = 0;
@@ -9,6 +9,7 @@ const level = document.querySelector('.header');
 const score = document.querySelector('.score');
 const restart = document.querySelector('.restart');
 const wrapper = document.querySelector('.wrapper');
+const pieceList = document.querySelectorAll('img');
 const pieceColors = ['green', 'yellow', 'red', 'blue', 'purple'];
 
 window.document.addEventListener('keypress', () => {
@@ -20,20 +21,38 @@ window.document.addEventListener('keypress', () => {
 	}
 });
 
+// let numberOfPieces = document.querySelectorAll(`.piece`).length;
+
+for (let i = 0; i < numberOfPieces; i++) {
+	let pieceColor = document.querySelectorAll('.piece')[i];
+	pieceColor.addEventListener('click', (event) => {
+		event.preventDefault();
+
+
+	});
+}
+
+
+function userMoves
+
 wrapper.addEventListener('click', (event) => {
 	event.preventDefault();
 	playerTurn = true;
-	let user = document.getElementById(event.target.id).getAttribute('id');
-	userMoves.push(user);
-	validate(userMoves.length - 1);
-	playSound(user);
-	highlight(user);
+	let userMove = document.getElementById(event.target.id).getAttribute('id');
+	let userId = document.getElementById(event.target.id).dataset.id;
+	let userMoveId = pieceList[userId].dataset.id;
+	animation(`${userMoveId}`);
+	userSequence.push(userMove);
+	validate(userSequence.length - 1);
+	playSound(userMove);
+	// animation(userId);
+	// highlight(userId);
 	score.style.display = 'inline';
 });
 
 function validate(currentLevel) {
-	if (gameSequence[currentLevel] === userMoves[currentLevel]) {
-		if (userMoves.length === gameSequence.length) {
+	if (gameSequence[currentLevel] === userSequence[currentLevel]) {
+		if (userSequence.length === gameSequence.length) {
 			points += 10;
 			if (points < 100) {
 				score.innerText = `00${points}`;
@@ -58,7 +77,6 @@ function showPattern(array) {
 	let promise = Promise.resolve();
 	array.forEach((array) => {
 		promise = promise.then(() => {
-			console.log(array);
 			highlight(array);
 			playSound(array);
 			return new Promise((resolve) => {
@@ -79,13 +97,17 @@ function simonMoves() {
 	let currentRandomNumber = Math.floor(Math.random() * 5);
 	let piece = gameSequence[0];
 	let simon = pieceColors[currentRandomNumber];
-	let simonPiece = document.querySelector(`#${simon}`);
+	// let simonPiece = document.querySelector(`#${simon}`).dataset.id;
+	// console.log(`Simon Piece: ${simonPiece}`);
+	// console.log(simonPiece);
+	// animation(simonPiece);
 	piece = gameSequence[gameSequence.length - 1];
 	gameSequence.push(simon);
 	showPattern(gameSequence);
 }
 
 function highlight(currentPiece) {
+	console.log(`current piece: ${currentPiece}`);
 	document.getElementById(`${currentPiece}`).classList.add('highlight');
 	setTimeout(() => {
 		document.getElementById(`${currentPiece}`).classList.remove('highlight');
@@ -120,7 +142,11 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 	// We create a Promise and return it
 	new Promise((resolve, reject) => {
 		const animationName = `${prefix}${animation}`;
-		const node = document.querySelector('.piece');
+		const green = document.querySelector('#green');
+		const yellow = document.querySelector('#yellow');
+		const red = document.querySelector('#red');
+		const purple = document.querySelector('#purple');
+		const blue = document.querySelector('#blue');
 
 		node.classList.add(`${prefix}animated`, animationName);
 
@@ -135,50 +161,49 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 	});
 
 function animation(key) {
-	let img = document.querySelectorAll('img')[key].dataset.id;
-
+	// let img = document.querySelectorAll('img')[key].dataset.id;
 	switch (key) {
 		case 0:
-			const green = document.querySelector('#green');
+			// const green = document.querySelector('#green');
 			green.classList.add('animate__animated', 'animate__shakeY');
 			green.addEventListener('animationend', () => {
 				green.classList.remove('animate__animated', 'animate__shakeY');
 			});
+
 			break;
 		case 1:
-			const yellow = document.querySelector('#yellow');
+			// const yellow = document.querySelector('#yellow');
 			yellow.classList.add('animate__animated', 'animate__bounce');
 			yellow.addEventListener('animationend', () => {
 				yellow.classList.remove('animate__animated', 'animate__bounce');
 			});
 			break;
 		case 3:
-			const red = document.querySelector('#red');
+			// const red = document.querySelector('#red');
 			red.classList.add('animate__animated', 'animate__swing');
 			red.addEventListener('animationend', () => {
 				red.classList.remove('animate__animated', 'animate__swing');
 			});
 			break;
 		case 4:
-			const purple = document.querySelector('#purple');
+			// const purple = document.querySelector('#purple');
 			purple.classList.add('animate__animated', 'animate__bounceIn');
 			purple.addEventListener('animationend', () => {
 				purple.classList.remove('animate__animated', 'animate__bounceIn');
 			});
 			break;
 		case 5:
-			const blue = document.querySelector('#blue');
+			// const blue = document.querySelector('#blue');
 			blue.classList.add('animate__animated', 'animate__shakeY');
 			blue.addEventListener('animationend', () => {
 				blue.classList.remove('animate__animated', 'animate__shakeY');
 			});
 			break;
 		default:
-			console.log(img);
+			console.log(`Switch Case: ${key}`);
 			break;
 	}
 }
-animation(0);
 
 // animateCSS()
 /**
