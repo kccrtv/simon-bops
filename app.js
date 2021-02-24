@@ -23,6 +23,7 @@ wrapper.addEventListener('click', (event) => {
 	let user = document.getElementById(event.target.id).getAttribute('id');
 	userMoves.push(user);
 	validate(userMoves.length - 1);
+	playSound(user);
 	highlight(user);
 	score.style.display = 'inline';
 });
@@ -55,6 +56,8 @@ function simonMoves() {
 	piece = gameSequence[gameSequence.length - 1];
 	gameSequence.push(simon);
 
+	console.log(gameSequence);
+	playSound(simon);
 	document.querySelector('.wrapper').filter = 'brightness(2)';
 	simonPiece.classList.add('highlight');
 	setTimeout(() => {
@@ -69,6 +72,11 @@ function highlight(currentPiece) {
 	setTimeout(() => {
 		document.getElementById(`${currentPiece}`).classList.remove('highlight');
 	}, 100);
+}
+
+function playSound(name) {
+	let audio = new Audio(`sound/${name}.wav`);
+	audio.play();
 }
 
 function reset() {
