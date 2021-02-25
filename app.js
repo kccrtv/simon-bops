@@ -1,7 +1,7 @@
 let gameSequence = [];
 let userSequence = [];
 let game = false;
-let playerTurn = false;
+let userTurn = false;
 let currentLevel = 0;
 let points = 0;
 const main = document.querySelector('main');
@@ -21,34 +21,110 @@ window.document.addEventListener('keypress', () => {
 	}
 });
 
-// let numberOfPieces = document.querySelectorAll(`.piece`).length;
+const numberOfPieces = document.querySelectorAll(`.piece`).length;
+const pieceColor = document.querySelectorAll('.piece');
 
 for (let i = 0; i < numberOfPieces; i++) {
-	let pieceColor = document.querySelectorAll('.piece')[i];
-	pieceColor.addEventListener('click', (event) => {
+	pieceColor[i].addEventListener('click', (event) => {
 		event.preventDefault();
-
-
+		let pieceColorId = pieceColor[i].dataset.id;
+		userTurn = true;
+		// animation(pieceColorId);
+		animateCSS(pieceColorId);
+		userSequence.push(pieceColor[i].id);
+		validate(userSequence - 1);
+		playSound(pieceColor[i].id);
+		score.style.display = 'inline';
 	});
+
+	function animateCSS(element, animation, prefix = 'animate__') {
+		let animationStyle = '';
+
+		new Promise((resolve, reject) => {
+			if (element === pieceColor[0]) {
+				animationStyle = 'shakeY';
+				pieceColor[0].classList.add(
+					`${prefix}animated`,
+					`${prefix}${animation}`
+				);
+				setTimeout(() => {
+					pieceColor[0].classList.remove(
+						`${prefix}animated`,
+						`${prefix}${animation}`
+					);
+				}, 100);
+			}
+
+			// switch (element[key]) {
+			// 	case 0:
+			// 		pieceColor[0].add('animate__animated', 'animate__shakeY');
+
+			// 		// animateCSS(green, 'shakeY');
+			// 		// green.addEventListener('animationend', () => {
+			// 		// 	green.classList.remove('animate__animated', 'animate__shakeY');
+			// 		// });
+			// 		break;
+			// 	case 1:
+			// 		// const yellow = document.querySelector('#yellow');
+			// 		yellow.classList.add('animate__animated', 'animate__bounce');
+			// 		yellow.addEventListener('animationend', () => {
+			// 			yellow.classList.remove('animate__animated', 'animate__bounce');
+			// 		});
+			// 		break;
+			// 	case 3:
+			// 		// const red = document.querySelector('#red');
+			// 		red.classList.add('animate__animated', 'animate__swing');
+			// 		red.addEventListener('animationend', () => {
+			// 			red.classList.remove('animate__animated', 'animate__swing');
+			// 		});
+			// 		break;
+			// 	case 4:
+			// 		// const purple = document.querySelector('#purple');
+			// 		purple.classList.add('animate__animated', 'animate__bounceIn');
+			// 		purple.addEventListener('animationend', () => {
+			// 			purple.classList.remove('animate__animated', 'animate__bounceIn');
+			// 		});
+			// 		break;
+			// 	case 5:
+			// 		// const blue = document.querySelector('#blue');
+			// 		blue.classList.add('animate__animated', 'animate__shakeY');
+			// 		blue.addEventListener('animationend', () => {
+			// 			blue.classList.remove('animate__animated', 'animate__shakeY');
+			// 		});
+			// 		break;
+			// 	default:
+			// 		console.log(`Switch Case: ${key}`);
+			// 		break;
+			// }
+		});
+	}
 }
 
+// function userMoves() {
+// 	wrapper.addEventListener('click', (event) => {
+// 		userTurn = true;
+// 		animation(pieceColor);
+// 		userSequence.push(pieceColor);
+// 		validate(userSequence - 1);
+// 		playSound(pieceColor);
+// 		score.style.display = 'inline';
+// 	});
+// }
 
-function userMoves
-
-wrapper.addEventListener('click', (event) => {
-	event.preventDefault();
-	playerTurn = true;
-	let userMove = document.getElementById(event.target.id).getAttribute('id');
-	let userId = document.getElementById(event.target.id).dataset.id;
-	let userMoveId = pieceList[userId].dataset.id;
-	animation(`${userMoveId}`);
-	userSequence.push(userMove);
-	validate(userSequence.length - 1);
-	playSound(userMove);
-	// animation(userId);
-	// highlight(userId);
-	score.style.display = 'inline';
-});
+// wrapper.addEventListener('click', (event) => {
+// 	event.preventDefault();
+// 	// playerTurn = true;
+// 	let userMove = document.getElementById(event.target.id).getAttribute('id');
+// 	let userId = document.getElementById(event.target.id).dataset.id;
+// 	let userMoveId = pieceList[userId].dataset.id;
+// 	animation(`${userMoveId}`);
+// 	userSequence.push(userMove);
+// 	validate(userSequence.length - 1);
+// 	playSound(userMove);
+// 	// animation(userId);
+// 	// highlight(userId);
+// 	score.style.display = 'inline';
+// });
 
 function validate(currentLevel) {
 	if (gameSequence[currentLevel] === userSequence[currentLevel]) {
@@ -59,7 +135,7 @@ function validate(currentLevel) {
 			} else if (points >= 100) {
 				score.innerText = `0${points}`;
 			}
-			setTimeout(function () {
+			setTimeout(() => {
 				simonMoves();
 			}, 1000);
 		}
@@ -90,7 +166,7 @@ function showPattern(array) {
 }
 
 function simonMoves() {
-	playerTurn = false;
+	userTurn = false;
 	userMoves = [];
 	currentLevel++;
 	level.textContent = `Level ${currentLevel}`;
@@ -124,7 +200,7 @@ function reset() {
 	gameSequence = [];
 	userMoves = [];
 	game = false;
-	playerTurn = false;
+	userTurn = false;
 	currentLevel = 0;
 	points = 0;
 	score.style.display = 'none';
@@ -138,71 +214,71 @@ function reset() {
  * blue - animate__shakeY
  */
 
-const animateCSS = (element, animation, prefix = 'animate__') =>
-	// We create a Promise and return it
-	new Promise((resolve, reject) => {
-		const animationName = `${prefix}${animation}`;
-		const green = document.querySelector('#green');
-		const yellow = document.querySelector('#yellow');
-		const red = document.querySelector('#red');
-		const purple = document.querySelector('#purple');
-		const blue = document.querySelector('#blue');
+// const animateCSS = (element, animation, prefix = 'animate__') =>
+// 	// We create a Promise and return it
+// 	new Promise((resolve, reject) => {
+// 		const animationName = `${prefix}${animation}`;
+// 		// const green = document.querySelector('#green');
+// 		// const yellow = document.querySelector('#yellow');
+// 		// const red = document.querySelector('#red');
+// 		// const purple = document.querySelector('#purple');
+// 		// const blue = document.querySelector('#blue');
 
-		node.classList.add(`${prefix}animated`, animationName);
+// 		node.classList.add(`${prefix}animated`, animationName);
 
-		// When the animation ends, we clean the classes and resolve the Promise
-		function handleAnimationEnd(event) {
-			event.stopPropagation();
-			node.classList.remove(`${prefix}animated`, animationName);
-			resolve('Animation ended');
-		}
+// 		// When the animation ends, we clean the classes and resolve the Promise
+// 		function handleAnimationEnd(event) {
+// 			event.stopPropagation();
+// 			node.classList.remove(`${prefix}animated`, animationName);
+// 			resolve('Animation ended');
+// 		}
 
-		node.addEventListener('animationend', handleAnimationEnd, { once: true });
-	});
+// 		node.addEventListener('animationend', handleAnimationEnd, { once: true });
+// 	});
 
 function animation(key) {
 	// let img = document.querySelectorAll('img')[key].dataset.id;
-	switch (key) {
-		case 0:
-			// const green = document.querySelector('#green');
-			green.classList.add('animate__animated', 'animate__shakeY');
-			green.addEventListener('animationend', () => {
-				green.classList.remove('animate__animated', 'animate__shakeY');
-			});
-
-			break;
-		case 1:
-			// const yellow = document.querySelector('#yellow');
-			yellow.classList.add('animate__animated', 'animate__bounce');
-			yellow.addEventListener('animationend', () => {
-				yellow.classList.remove('animate__animated', 'animate__bounce');
-			});
-			break;
-		case 3:
-			// const red = document.querySelector('#red');
-			red.classList.add('animate__animated', 'animate__swing');
-			red.addEventListener('animationend', () => {
-				red.classList.remove('animate__animated', 'animate__swing');
-			});
-			break;
-		case 4:
-			// const purple = document.querySelector('#purple');
-			purple.classList.add('animate__animated', 'animate__bounceIn');
-			purple.addEventListener('animationend', () => {
-				purple.classList.remove('animate__animated', 'animate__bounceIn');
-			});
-			break;
-		case 5:
-			// const blue = document.querySelector('#blue');
-			blue.classList.add('animate__animated', 'animate__shakeY');
-			blue.addEventListener('animationend', () => {
-				blue.classList.remove('animate__animated', 'animate__shakeY');
-			});
-			break;
-		default:
-			console.log(`Switch Case: ${key}`);
-			break;
-	}
+	// switch (key) {
+	// 	case 0:
+	// 		const green = document.querySelector('#green');
+	// 		// green.classList.add('animate__animated', 'animate__shakeY');
+	// 		animateCSS(green, 'shakeY');
+	// 		// green.addEventListener('animationend', () => {
+	// 		// 	green.classList.remove('animate__animated', 'animate__shakeY');
+	// 		// });
+	// 		break;
+	// 	case 1:
+	// 		// const yellow = document.querySelector('#yellow');
+	// 		yellow.classList.add('animate__animated', 'animate__bounce');
+	// 		yellow.addEventListener('animationend', () => {
+	// 			yellow.classList.remove('animate__animated', 'animate__bounce');
+	// 		});
+	// 		break;
+	// 	case 3:
+	// 		// const red = document.querySelector('#red');
+	// 		red.classList.add('animate__animated', 'animate__swing');
+	// 		red.addEventListener('animationend', () => {
+	// 			red.classList.remove('animate__animated', 'animate__swing');
+	// 		});
+	// 		break;
+	// 	case 4:
+	// 		// const purple = document.querySelector('#purple');
+	// 		purple.classList.add('animate__animated', 'animate__bounceIn');
+	// 		purple.addEventListener('animationend', () => {
+	// 			purple.classList.remove('animate__animated', 'animate__bounceIn');
+	// 		});
+	// 		break;
+	// 	case 5:
+	// 		// const blue = document.querySelector('#blue');
+	// 		blue.classList.add('animate__animated', 'animate__shakeY');
+	// 		blue.addEventListener('animationend', () => {
+	// 			blue.classList.remove('animate__animated', 'animate__shakeY');
+	// 		});
+	// 		break;
+	// 	default:
+	// 		console.log(`Switch Case: ${key}`);
+	// 		break;
+	// }
 }
 
 // animateCSS()
