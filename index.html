@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Project 1: Simon Bops</title>
+		<link rel="icon" type="image/png" href="css/simon.png" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+		/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<main>
+			<nav>
+				<h1 class="header"><span>key</span>Press Start</h1>
+			</nav>
+			<figure>
+				<div class="wrapper">
+					<img
+						data-id="0"
+						id="green"
+						class="piece"
+						src="css/green.png"
+						alt="green"
+					/>
+					<img
+						data-id="1"
+						id="yellow"
+						class="piece"
+						src="css/yellow.png"
+						alt="yellow"
+					/>
+					<img class="holder" src="css/holder.png" alt="holder" />
+					<img data-id="2" id="red" class="piece" src="css/red.png" alt="red" />
+					<img
+						data-id="3"
+						id="purple"
+						class="piece"
+						src="css/purple.png"
+						alt="purple"
+					/>
+					<img
+						data-id="4"
+						id="blue"
+						class="piece"
+						src="css/blue.png"
+						alt="blue"
+					/>
+				</div>
+			</figure>
+			<p class="restart"><span>key</span>Press to Play Again</p>
+			<p class="score"></p>
+		</main>
+		<script src="app.js"></script>
+	</body>
+</html>
