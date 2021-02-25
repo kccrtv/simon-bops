@@ -27,41 +27,14 @@ window.document.addEventListener('keypress', () => {
 for (let i = 0; i < numberOfPieces; i++) {
 	pieceColor[i].addEventListener('click', (event) => {
 		event.preventDefault();
-		let pieceColorId = pieceColor[i].dataset.id;
 		userTurn = true;
-		// console.log(pieceColorId);
+		let pieceColorId = pieceColor[i].dataset.id;
 		animation(parseInt(pieceColorId));
 		userSequence.push(pieceColor[i].id);
-		validate(userSequence - 1);
+		validate(userSequence.length - 1);
 		playSound(pieceColor[i].id);
 		score.style.display = 'inline';
 	});
-
-	// function userMoves() {
-	// 	wrapper.addEventListener('click', (event) => {
-	// 		userTurn = true;
-	// 		animation(pieceColor);
-	// 		userSequence.push(pieceColor);
-	// 		validate(userSequence - 1);
-	// 		playSound(pieceColor);
-	// 		score.style.display = 'inline';
-	// 	});
-	// }
-
-	// wrapper.addEventListener('click', (event) => {
-	// 	event.preventDefault();
-	// 	// playerTurn = true;
-	// 	let userMove = document.getElementById(event.target.id).getAttribute('id');
-	// 	let userId = document.getElementById(event.target.id).dataset.id;
-	// 	let userMoveId = pieceList[userId].dataset.id;
-	// 	animation(`${userMoveId}`);
-	// 	userSequence.push(userMove);
-	// 	validate(userSequence.length - 1);
-	// 	playSound(userMove);
-	// 	// animation(userId);
-	// 	// highlight(userId);
-	// 	score.style.display = 'inline';
-	// });
 
 	function validate(currentLevel) {
 		if (gameSequence[currentLevel] === userSequence[currentLevel]) {
@@ -73,8 +46,9 @@ for (let i = 0; i < numberOfPieces; i++) {
 					score.innerText = `0${points}`;
 				}
 				setTimeout(() => {
+					userTurn = false;
 					simonMoves();
-				}, 1000);
+				}, 900);
 			}
 		} else {
 			level.textContent = `Game Over!`;
@@ -86,7 +60,7 @@ for (let i = 0; i < numberOfPieces; i++) {
 	}
 
 	function showPattern(array) {
-		let interval = 900;
+		let interval = 700;
 		let promise = Promise.resolve();
 		array.forEach((array) => {
 			promise = promise.then(() => {
@@ -103,22 +77,20 @@ for (let i = 0; i < numberOfPieces; i++) {
 	}
 
 	function simonMoves() {
-		userTurn = false;
-		userMoves = [];
+		userSequence = [];
 		currentLevel++;
 		level.textContent = `Level ${currentLevel}`;
 		let currentRandomNumber = Math.floor(Math.random() * 5);
 		let piece = gameSequence[0];
 		let simon = pieceColors[currentRandomNumber];
-		// let simonPiece = document.querySelector(`#${simon}`).dataset.id;
-		// animation(parseInt(simonPiece));
 		piece = gameSequence[gameSequence.length - 1];
 		gameSequence.push(simon);
-		showPattern(gameSequence);
+		if (userTurn !== true) {
+			showPattern(gameSequence);
+		}
 	}
 
 	function highlight(currentPiece) {
-		console.log(`current piece: ${currentPiece}`);
 		document.getElementById(`${currentPiece}`).classList.add('highlight');
 		setTimeout(() => {
 			document.getElementById(`${currentPiece}`).classList.remove('highlight');
@@ -133,7 +105,7 @@ for (let i = 0; i < numberOfPieces; i++) {
 
 	function reset() {
 		gameSequence = [];
-		userMoves = [];
+		userSequence = [];
 		game = false;
 		userTurn = false;
 		currentLevel = 0;
@@ -144,7 +116,6 @@ for (let i = 0; i < numberOfPieces; i++) {
 	function animation(key) {
 		switch (key) {
 			case 0:
-				console.log(pieceColor[0]);
 				pieceColor[0].classList.add('animate__animated', 'animate__shakeY');
 				setTimeout(() => {
 					pieceColor[0].classList.remove(
@@ -155,18 +126,13 @@ for (let i = 0; i < numberOfPieces; i++) {
 				break;
 
 			case 1:
-				console.log(pieceColor[1]);
-				pieceColor[1].classList.add('animate__animated', 'animate__bounce');
+				pieceColor[1].classList.add('animate__animated', 'animate__tada');
 				setTimeout(() => {
-					pieceColor[1].classList.remove(
-						'animate__animated',
-						'animate__bounce'
-					);
+					pieceColor[1].classList.remove('animate__animated', 'animate__tada');
 				}, 100);
 				break;
 
 			case 2:
-				console.log(pieceColor[2]);
 				pieceColor[2].classList.add('animate__animated', 'animate__swing');
 				setTimeout(() => {
 					pieceColor[2].classList.remove('animate__animated', 'animate__swing');
@@ -174,7 +140,6 @@ for (let i = 0; i < numberOfPieces; i++) {
 				break;
 
 			case 3:
-				console.log(pieceColor[3]);
 				pieceColor[3].classList.add('animate__animated', 'animate__bounceIn');
 				setTimeout(() => {
 					pieceColor[3].classList.remove(
@@ -185,7 +150,6 @@ for (let i = 0; i < numberOfPieces; i++) {
 				break;
 
 			case 4:
-				console.log(pieceColor[4]);
 				pieceColor[4].classList.add('animate__animated', 'animate__shakeY');
 				setTimeout(() => {
 					pieceColor[4].classList.remove(
@@ -200,13 +164,3 @@ for (let i = 0; i < numberOfPieces; i++) {
 		}
 	}
 }
-
-/**
- * nodelist:
- * 0 green data-id 0
- * 1 yellow data-id 1
- * 2 holder data-id n/a
- * 3 red data-id 3
- * 4 purple data-id 4
- * 5 blue data-id 5
- */
