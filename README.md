@@ -97,15 +97,16 @@ CSS Grid wasn't covered at this point of the course, so it took a lot of trial, 
 ### References/Credits:
 
 - https://animate.style/
+- https://cssgradient.io/
 - https://css-tricks.com/almanac/properties/f/filter/
 - https://codepen.io/fitri/pen/NjbMRV?editors=0010
 - https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
 - https://iconhandbook.co.uk/reference/examples/favicons/
-- https://www.udemy.com/course/the-complete-web-development-bootcamp/
+- https://www.sounds-resource.com/mobile/bopit/sound/23632/
 - https://stackoverflow.com/questions/45498873/add-a-delay-after-executing-each-iteration-with-foreach-loop
+- https://www.udemy.com/course/the-complete-web-development-bootcamp/
 - https://www.w3schools.com/jsref/prop_style_filter.asp
 - https://www.w3schools.com/JSREF/prop_style_display.asp
-- https://www.sounds-resource.com/mobile/bopit/sound/23632/
 - https://www.w3schools.com/tags/av_prop_volume.asp
 - https://www.w3schools.com/jsref/met_audio_play.asp
 - https://www.w3schools.com/jsref/met_element_getattribute.asp

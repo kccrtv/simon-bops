@@ -19,6 +19,7 @@ window.document.addEventListener('keypress', () => {
 		restart.style.display = 'none';
 		game = true;
 		userTurn = false;
+		points = 0;
 	}
 });
 
@@ -26,6 +27,7 @@ for (let i = 0; i < numberOfPieces; i++) {
 	pieceColor[i].addEventListener('click', (event) => {
 		event.preventDefault();
 		userTurn = true;
+		main.appendChild(score);
 		let pieceColorId = pieceColor[i].dataset.id;
 		animation(parseInt(pieceColorId));
 		userSequence.push(pieceColor[i].id);
@@ -50,10 +52,11 @@ for (let i = 0; i < numberOfPieces; i++) {
 			}
 		} else {
 			level.textContent = `Game Over!`;
-			restart.style.display = 'block';
-			main.removeChild(score);
-			playSound(`wrong`);
 			reset();
+			main.removeChild(score);
+			restart.style.display = 'block';
+			score.style.display = 'none';
+			playSound(`wrong`);
 		}
 	}
 
@@ -159,6 +162,7 @@ function reset() {
 	game = false;
 	userTurn = false;
 	currentLevel = 0;
+	main.appendChild(score);
 	points = 0;
 	score.style.display = 'none';
 }
