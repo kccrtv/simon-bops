@@ -8,8 +8,6 @@ const main = document.querySelector('main');
 const level = document.querySelector('.header');
 const score = document.querySelector('.score');
 const restart = document.querySelector('.restart');
-const wrapper = document.querySelector('.wrapper');
-const pieceList = document.querySelectorAll('img');
 const pieceColors = ['green', 'yellow', 'red', 'blue', 'purple'];
 const numberOfPieces = document.querySelectorAll(`.piece`).length;
 const pieceColor = document.querySelectorAll('.piece');
@@ -59,6 +57,20 @@ for (let i = 0; i < numberOfPieces; i++) {
 		}
 	}
 
+	function simonMoves() {
+		userSequence = [];
+		currentLevel++;
+		level.textContent = `Level ${currentLevel}`;
+		let currentRandomNumber = Math.floor(Math.random() * 5);
+		let piece = gameSequence[0];
+		let simon = pieceColors[currentRandomNumber];
+		piece = gameSequence[gameSequence.length - 1];
+		gameSequence.push(simon);
+		if (userTurn !== true) {
+			showPattern(gameSequence);
+		}
+	}
+
 	function showPattern(array) {
 		let interval = 700;
 		let promise = Promise.resolve();
@@ -76,41 +88,11 @@ for (let i = 0; i < numberOfPieces; i++) {
 		});
 	}
 
-	function simonMoves() {
-		userSequence = [];
-		currentLevel++;
-		level.textContent = `Level ${currentLevel}`;
-		let currentRandomNumber = Math.floor(Math.random() * 5);
-		let piece = gameSequence[0];
-		let simon = pieceColors[currentRandomNumber];
-		piece = gameSequence[gameSequence.length - 1];
-		gameSequence.push(simon);
-		if (userTurn !== true) {
-			showPattern(gameSequence);
-		}
-	}
-
 	function highlight(currentPiece) {
 		document.getElementById(`${currentPiece}`).classList.add('highlight');
 		setTimeout(() => {
 			document.getElementById(`${currentPiece}`).classList.remove('highlight');
 		}, 100);
-	}
-
-	function playSound(name) {
-		let audio = new Audio(`sound/${name}.wav`);
-		audio.volume = 0.1;
-		audio.play();
-	}
-
-	function reset() {
-		gameSequence = [];
-		userSequence = [];
-		game = false;
-		userTurn = false;
-		currentLevel = 0;
-		points = 0;
-		score.style.display = 'none';
 	}
 
 	function animation(key) {
@@ -163,4 +145,20 @@ for (let i = 0; i < numberOfPieces; i++) {
 				return `Switch Case: ${key}`;
 		}
 	}
+}
+
+function playSound(name) {
+	let audio = new Audio(`sound/${name}.wav`);
+	audio.volume = 0.1;
+	audio.play();
+}
+
+function reset() {
+	gameSequence = [];
+	userSequence = [];
+	game = false;
+	userTurn = false;
+	currentLevel = 0;
+	points = 0;
+	score.style.display = 'none';
 }
