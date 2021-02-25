@@ -82,13 +82,13 @@
 
 ## Major Views
 
-<img src="css/wireframes.png" style="width: 60vw;" alt="wireframe">
-<img src="css/layout.png" style="width: 60vw;" alt="layout">
+<img src="css/wireframes.png" style="width: 20vw;" alt="wireframe">
+<img src="css/layout.png" style="width: 20vw;" alt="layout">
 
 ## Interface
 
-<img src="css/static-start.png" style="width: 60vw;" alt="start">
-<img src="css/static-game-over.png" style="width: 60vw;" alt="game over">
+<img src="css/static-start.png" style="width: 20vw;" alt="start">
+<img src="css/static-game-over.png" style="width: 20vw;" alt="game over">
 
 # Unsolved Problems / Major Hurdles
 
