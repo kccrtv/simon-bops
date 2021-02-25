@@ -85,3 +85,7 @@ span {
 .restart {
 	display: none;
 }
+
+img:root {
+	--animate-duration: 0.2s;
+}
