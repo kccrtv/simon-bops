@@ -23,6 +23,28 @@ window.document.addEventListener('keypress', () => {
 	}
 });
 
+level.addEventListener('click', (event) => {
+	if (!game) {
+		simonMoves();
+		level.textContent = `Level ${currentLevel}`;
+		restart.style.display = 'none';
+		game = true;
+		userTurn = false;
+		points = 0;
+	}
+});
+
+restart.addEventListener('click', (event) => {
+	if (!game) {
+		simonMoves();
+		level.textContent = `Level ${currentLevel}`;
+		restart.style.display = 'none';
+		game = true;
+		userTurn = false;
+		points = 0;
+	}
+});
+
 for (let i = 0; i < numberOfPieces; i++) {
 	pieceColor[i].addEventListener('click', (event) => {
 		event.preventDefault();
